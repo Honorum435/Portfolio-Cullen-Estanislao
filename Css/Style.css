@@ -660,3 +660,87 @@ body.modo-claro #navbar a:hover {
         font-size: 1rem;
     }
 }
+
+/* ===== MODO CLARO HERO ===== */
+body.modo-claro #hero {
+    background: #fff;
+    color: #232931;
+}
+body.modo-claro .hero-content h1,
+body.modo-claro .hero-content h2,
+body.modo-claro .hero-content p {
+    color: #232931;
+}
+body.modo-claro .hero-btn {
+    background: #14FFEC;
+    color: #232931;
+}
+body.modo-claro .hero-btn:hover {
+    background: #00eaff;
+    color: #232931;
+}
+body.modo-claro .hero-img img {
+    border-color: #14FFEC;
+    box-shadow: 0 0 20px rgba(44,54,57,0.15);
+}
+
+/* ===== MODO CLARO CONTACTO ===== */
+body.modo-claro #contacto {
+    background: #fff;
+    color: #232931;
+    border-color: #14FFEC;
+}
+body.modo-claro #contacto h2,
+body.modo-claro #contacto label {
+    color: #14FFEC;
+}
+body.modo-claro #contacto input,
+body.modo-claro #contacto textarea {
+    background: #f5f7fa;
+    color: #232931;
+    border: 1.5px solid #14FFEC;
+}
+body.modo-claro #contacto button[type="submit"] {
+    background: #14FFEC;
+    color: #232931;
+}
+body.modo-claro #contacto button[type="submit"]:hover {
+    background: #00eaff;
+    color: #232931;
+}
+
+/* ===== MODO CLARO REDES SOCIALES ===== */
+body.modo-claro #redes {
+    background: #fff;
+    color: #232931;
+    border-color: #14FFEC;
+}
+body.modo-claro #redes h2 {
+    color: #14FFEC;
+}
+body.modo-claro .red-icon {
+    background: #f0f0f0;
+    border-color: #14FFEC;
+}
+body.modo-claro .red-icon:hover {
+    background: #14FFEC;
+    border-color: #00eaff;
+}
+body.modo-claro .red-icon img {
+    filter: none;
+}
+body.modo-claro .red-icon:hover img {
+    filter: brightness(0) invert(1);
+}
+
+/* ===== MODO CLARO BOTÓN "VOLVER ARRIBA" Y MODO ===== */
+body.modo-claro .btn-arriba,
+body.modo-claro .modo-btn {
+    background: #232931;
+    color: #14FFEC;
+}
+body.modo-claro .btn-arriba:hover,
+body.modo-claro .modo-btn:hover {
+    background: #323232;
+    color: #00eaff;
+}
