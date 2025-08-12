@@ -570,43 +570,19 @@ body.modo-claro #navbar a:hover {
   #hero {
     flex-direction: column;
     align-items: center;
-    padding: 40px 5%;
+    padding: 40px 5% 60px 5%; /* Aumenta el padding-bottom */
     min-height: 60vh;
-    gap: 24px;
+    gap: 32px; /* Más espacio entre elementos internos */
     text-align: center;
-  }
-  .hero-content {
-    max-width: 100%;
-    text-align: center;
-  }
-  .hero-img img {
-    width: 180px;
-    margin-top: 24px;
-  }
-  .hero-content h1 {
-    font-size: 2.1rem;
-  }
-  .hero-content h2 {
-    font-size: 1.2rem;
+    margin-bottom: 32px;
   }
 }
 
 @media (max-width: 600px) {
   #hero {
-    padding: 24px 2vw;
+    padding: 24px 2vw 70px 2vw; /* Más espacio abajo aún en móviles */
     min-height: 40vh;
-  }
-  .hero-img img {
-    width: 120px;
-  }
-  .hero-content h1 {
-    font-size: 1.4rem;
-  }
-  .hero-content h2 {
-    font-size: 1rem;
-  }
-  .hero-content p {
-    font-size: 0.98rem;
+    margin-bottom: 40px;
   }
 }
 
