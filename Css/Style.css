@@ -472,3 +472,166 @@ body.modo-claro #navbar a:hover {
     color: #232931;
     transform: scale(1.05);
 }
+#redes {
+    max-width: 600px;
+    margin: 40px auto 0 auto;
+    padding: 32px 24px;
+    border: 2.5px solid #14FFEC;
+    border-radius: 18px;
+    background-color: #232931;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.15);
+    text-align: center;
+}
+
+#redes h2 {
+    color: #14FFEC;
+    font-size: 2rem;
+    margin-bottom: 24px;
+}
+
+.redes-links {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    margin-top: 12px;
+}
+
+.red-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 64px;
+    height: 64px;
+    background: #22282a;
+    border-radius: 50%;
+    border: 2px solid #14FFEC;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s, background 0.2s;
+    overflow: hidden;
+}
+
+.red-icon img {
+    width: 36px;
+    height: 36px;
+    object-fit: contain;
+    transition: transform 0.2s;
+}
+
+.red-icon:hover {
+    transform: scale(1.12) rotate(-6deg);
+    box-shadow: 0 4px 18px rgba(20,255,236,0.18);
+    border-color: #00eaff;
+    background: #14FFEC;
+}
+
+.red-icon:hover img {
+    transform: scale(1.18);
+    filter: brightness(0) invert(1);
+}
+
+/* --- Responsive Navbar --- */
+@media (max-width: 800px) {
+    #navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px 8px;
+    }
+    #navbar ul {
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+    }
+    #navbar li {
+        width: 100%;
+    }
+}
+
+/* --- Responsive Hero --- */
+@media (max-width: 700px) {
+    #hero {
+        padding: 40px 10px 30px 10px;
+        gap: 24px;
+        min-height: 260px;
+    }
+    #hero h1 {
+        font-size: 2rem;
+    }
+    #hero p {
+        font-size: 1rem;
+    }
+    .hero-img {
+        width: 120px;
+        height: 120px;
+    }
+}
+
+/* --- Responsive Proyectos --- */
+@media (max-width: 1100px) {
+    #proyectos {
+        gap: 18px;
+    }
+    .proyecto {
+        max-width: 320px;
+        min-width: 220px;
+    }
+}
+@media (max-width: 800px) {
+    #proyectos {
+        flex-direction: column;
+        align-items: center;
+        padding: 18px;
+    }
+    .proyecto {
+        width: 95%;
+        max-width: 400px;
+        min-width: 180px;
+    }
+}
+
+/* --- Responsive Experiencia, Habilidades, Contacto, Redes --- */
+@media (max-width: 700px) {
+    #experiencia,
+    #habilidades,
+    #contacto,
+    #redes {
+        max-width: 98vw;
+        padding: 18px 6px;
+    }
+    #habilidades ul {
+        flex-direction: column;
+        gap: 14px;
+    }
+    #habilidades li {
+        min-width: 140px;
+        width: 90%;
+    }
+}
+
+/* --- Responsive Redes Sociales --- */
+@media (max-width: 500px) {
+    .redes-links {
+        gap: 14px;
+    }
+    .red-icon {
+        width: 48px;
+        height: 48px;
+    }
+    .red-icon img {
+        width: 26px;
+        height: 26px;
+    }
+}
+
+/* --- Responsive Formulario de Contacto --- */
+@media (max-width: 500px) {
+    #contacto input,
+    #contacto textarea {
+        max-width: 98vw;
+        font-size: 0.95rem;
+    }
+    #contacto button[type="submit"] {
+        width: 100%;
+        padding: 10px 0;
+        font-size: 1rem;
+    }
+}
