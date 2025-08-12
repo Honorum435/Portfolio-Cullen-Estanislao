@@ -1,7 +1,18 @@
+@font-face {
+    font-family: 'MiFuente';
+    src: url('../fonts/MiFuente-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
 body {
     background-color: #2C3639;
     color: #14FFEC;
-
+    font-family: 'MiFuente', Arial, sans-serif;
+}
+h1, h2, h3 {
+    font-family: 'MiFuente', Arial, sans-serif;
 }
 #navbar {
     display: flex;
