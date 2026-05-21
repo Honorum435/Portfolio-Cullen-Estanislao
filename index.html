@@ -7,6 +7,7 @@
 
     <link rel="stylesheet" href="Css/Style.css">
     <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 </head>
 <body>
     <!-- Encabezado / Navegación -->
@@ -41,21 +42,39 @@
         <h1>Proyectos</h1>
         <div class="proyecto">
             <h3>Proyecto Menú Digital</h3>
+            <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span></div>
             <img src="Img/Menu.png" alt="Imagen Proyecto 1" width="200">
             <p>Un menú digital para la UTN. Fue mi segundo trabajo práctico.</p>
             <a href="https://honorum435.github.io/menu-digital/">Ver más</a>
         </div>
         <div class="proyecto">
             <h3>Proyecto Tarjeta de Presentación</h3>
+            <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span></div>
             <img src="Img/tarjeta de presentacion.PNG" alt="Imagen Proyecto 2" width="200">
             <p>Una tarjeta de presentación como mi primer trabajo para familiarizarme con HTML.</p>
             <a href="https://honorum435.github.io/Tarjeta-Presentacion/">Ver más</a>
         </div>
         <div class="proyecto">
             <h3>Clon de una página con Flexbox</h3>
+            <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">Flexbox</span></div>
             <img src="Img/tp3.PNG" alt="Imagen Proyecto 3" width="200">
             <p>Tercer trabajo práctico, el cual era replicar una página web usando todo el conocimiento dado.</p>
             <a href="https://honorum435.github.io/tp3-flexbox-clon/">Ver más</a>
+        </div>
+        <div class="proyecto">
+            <h3>AoM Build Orders</h3>
+            <div class="tags"><span class="tag">Electron</span><span class="tag">React</span><span class="tag">TypeScript</span><span class="tag">Express</span></div>
+           <img src="Img/Proyecto4.png" alt="Imagen Proyecto 4" width="200">
+           <img src="Img/Proyecto4_2.png" alt="React" width="20">
+            <p>Aplicación de escritorio (Electron + React + TypeScript) para consultar build orders de Age of Mythology: Retold. Muestra un overlay sobre el juego, incluye scraper integrado, caché local y soporte para todas las civilizaciones.</p>
+            <a href="https://github.com/Honorum435/AomBuildOrder" target="_blank">Ver en GitHub</a>
+        </div>
+        <div class="proyecto">
+            <h3>QuicoPay</h3>
+            <div class="tags"><span class="tag">Node.js</span><span class="tag">Prisma</span><span class="tag">JavaScript</span></div>
+            <img src="Img/quickopay-home.jpeg" alt="QuicoPay - pantalla principal" width="200">
+            <p>App móvil para el negocio de un amigo. Gestiona cuentas corrientes de clientes, registra compras desde un catálogo de productos, registra pagos y lleva el historial de movimientos.</p>
+            <a href="https://github.com/Honorum435/AppParaCuentas" target="_blank">Ver en GitHub</a>
         </div>
     </section>
 
@@ -65,6 +84,7 @@
         <ul>
             <li>Curso de Full Stack en la UTN</li>
             <li>Programación y diseño de videojuegos en la Escuela Da Vinci</li>
+            <li>Analista en sistemas en la Escuela Da Vinci</li>
         </ul>
     </section>
 
@@ -92,7 +112,8 @@
             <input type="email" id="email" name="email" required placeholder="ejemplo@email.com">
             <label for="mensaje">Mensaje:</label>
             <textarea id="mensaje" name="mensaje" required placeholder="Escribe tu mensaje aquí..."></textarea>
-            <button type="submit">Enviar</button>
+            <button type="submit" id="btn-enviar">Enviar</button>
+            <div id="form-msg" class="form-msg" aria-live="polite"></div>
         </form>
     </section>
 </main>

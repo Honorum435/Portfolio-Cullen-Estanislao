@@ -40,14 +40,48 @@ function animarAlScroll() {
     });
 }
 
-// 4. Validación del formulario de contacto
-function validarFormulario(e) {
-    const nombre = form.querySelector('[name="nombre"]');
-    const email = form.querySelector('[name="email"]');
+// 4. Envío del formulario con EmailJS
+// TODO: Reemplazá estos valores con los de tu cuenta en emailjs.com
+const EMAILJS_PUBLIC_KEY  = 'RvtJo3rMlTqeOwoXo';   // Account > API Keys
+const EMAILJS_SERVICE_ID  = 'service_ts5t32f';   // Email Services
+const EMAILJS_TEMPLATE_ID = 'template_k9q70b7';  // Email Templates
+
+emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+
+async function enviarFormulario(e) {
+    e.preventDefault();
+    const nombre  = form.querySelector('[name="nombre"]');
+    const email   = form.querySelector('[name="email"]');
     const mensaje = form.querySelector('[name="mensaje"]');
+    const msgDiv  = document.getElementById('form-msg');
+    const btn     = document.getElementById('btn-enviar');
+
     if (!nombre.value || !email.value || !mensaje.value || !email.value.includes('@')) {
-        e.preventDefault();
-        alert('Por favor, completa todos los campos correctamente.');
+        msgDiv.textContent = 'Por favor, completá todos los campos correctamente.';
+        msgDiv.className = 'form-msg error';
+        return;
+    }
+
+    btn.textContent = 'Enviando...';
+    btn.disabled = true;
+    msgDiv.textContent = '';
+    msgDiv.className = 'form-msg';
+
+    try {
+        await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+            from_name:  nombre.value,
+            reply_to:   email.value,
+            message:    mensaje.value,
+        });
+        msgDiv.textContent = '¡Mensaje enviado! Te respondo a la brevedad.';
+        msgDiv.className = 'form-msg success';
+        form.reset();
+    } catch (err) {
+        msgDiv.textContent = 'Hubo un error al enviar. Intentá de nuevo.';
+        msgDiv.className = 'form-msg error';
+    } finally {
+        btn.textContent = 'Enviar';
+        btn.disabled = false;
     }
 }
 
@@ -91,8 +125,8 @@ window.addEventListener('scroll', mostrarBtnArriba);
 window.addEventListener('scroll', animarAlScroll);
 window.addEventListener('DOMContentLoaded', animarAlScroll);
 
-// Validación de formulario
-if (form) form.addEventListener('submit', validarFormulario);
+// Envío de formulario
+if (form) form.addEventListener('submit', enviarFormulario);
 
 // Modo oscuro/claro
 modoBtn.textContent = '☀️ Modo Claro';
