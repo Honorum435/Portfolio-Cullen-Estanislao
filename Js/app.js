@@ -6,6 +6,9 @@ const modoBtn = document.createElement('button');
 const body = document.body;
 const proyectos = document.querySelectorAll('.proyecto');
 const contadorProyectos = document.createElement('div');
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightbox-img');
+const lightboxClose = document.getElementById('lightbox-close');
 
 // ====== FUNCIONES ======
 
@@ -102,6 +105,26 @@ function mostrarContadorProyectos() {
 
 // Scroll suave
 navbarLinks.forEach(link => link.addEventListener('click', scrollSuave));
+
+// Lightbox
+document.querySelectorAll('.proyecto-gallery img').forEach(img => {
+    img.addEventListener('click', () => {
+        lightboxImg.src = img.src;
+        lightboxImg.alt = img.alt;
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    });
+});
+
+function cerrarLightbox() {
+    lightbox.classList.remove('active');
+    lightboxImg.src = '';
+    document.body.style.overflow = '';
+}
+
+lightboxClose.addEventListener('click', cerrarLightbox);
+lightbox.addEventListener('click', e => { if (e.target === lightbox) cerrarLightbox(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') cerrarLightbox(); });
 
 // Botón volver arriba
 btnArriba.textContent = '↑';

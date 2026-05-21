@@ -181,7 +181,7 @@ header {
 }
 
 /* Imagen del proyecto centrada y tamaño uniforme */
-.proyecto img {
+.proyecto > img {
     width: 100%;
     max-width: 100%;
     height: 220px;
@@ -192,7 +192,7 @@ header {
     transition: transform 0.3s;
 }
 
-.proyecto img:hover {
+.proyecto > img:hover {
     transform: scale(1.08);
     cursor: pointer;
 }
@@ -249,6 +249,83 @@ header {
 
 .tag:hover {
     background: rgba(20,255,236,0.22);
+}
+
+/* Galería de screenshots de proyecto */
+.proyecto-gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    width: 100%;
+    margin-bottom: 24px;
+}
+
+.proyecto-gallery img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    object-position: top;
+    border-radius: 8px;
+    border: 1px solid rgba(20,255,236,0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, z-index 0s;
+    cursor: pointer;
+}
+
+.proyecto-gallery img:hover {
+    transform: scale(1.12);
+    box-shadow: 0 8px 24px rgba(20,255,236,0.25);
+    z-index: 10;
+    position: relative;
+    border-color: rgba(20,255,236,0.5);
+}
+
+/* Lightbox */
+.lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.92);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+    cursor: zoom-out;
+}
+
+.lightbox.active {
+    display: flex;
+}
+
+.lightbox img {
+    max-width: 90vw;
+    max-height: 90vh;
+    border-radius: 10px;
+    box-shadow: 0 0 40px rgba(20,255,236,0.2);
+    animation: lightboxIn 0.25s ease;
+    cursor: default;
+}
+
+@keyframes lightboxIn {
+    from { opacity: 0; transform: scale(0.92); }
+    to   { opacity: 1; transform: scale(1); }
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 28px;
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 2.5rem;
+    cursor: pointer;
+    line-height: 1;
+    opacity: 0.7;
+    transition: opacity 0.2s, transform 0.2s;
+}
+
+.lightbox-close:hover {
+    opacity: 1;
+    transform: scale(1.2);
 }
 
 #proyectos > h1 {
