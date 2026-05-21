@@ -92,6 +92,27 @@ header {
   line-height: 1.6;
 }
 
+#typewriter {
+    color: #14FFEC;
+    font-weight: 700;
+}
+
+.cursor {
+    color: #14FFEC;
+    font-weight: 300;
+    animation: blink 0.7s step-end infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0; }
+}
+
+body.modo-claro #typewriter,
+body.modo-claro .cursor {
+    color: #b07d3a;
+}
+
 .hero-btn {
   display: inline-block;
   padding: 12px 25px;
@@ -622,22 +643,54 @@ header {
 
 /* Modo claro */
 body.modo-claro {
-    background-color: #f5f7fa;
-    color: #111; /* Negro casi puro para mejor contraste */
+    background-color: #f5efe6;
+    color: #1a1008;
 }
 body.modo-claro #navbar {
-    background-color: #e0e0e0;
+    background-color: rgba(240,232,220,0.95);
+    border-bottom: 1px solid rgba(120,90,50,0.18);
 }
-body.modo-claro #proyectos,
-body.modo-claro #experiencia,
+body.modo-claro #proyectos {
+    background-color: #ede4d6;
+    color: #1a1008;
+}
+body.modo-claro #sobre-mi {
+    background-color: #f5efe6;
+    color: #1a1008;
+}
+body.modo-claro #sobre-mi h2 {
+    background: linear-gradient(90deg, #b07d3a, #d4944a);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+body.modo-claro .sobre-mi-content p {
+    color: #3a2c1a;
+}
+body.modo-claro .sobre-mi-content strong {
+    color: #a0621a;
+}
+body.modo-claro .sobre-mi-foto img {
+    border-color: rgba(160,98,26,0.5);
+}
+body.modo-claro #experiencia {
+    background-color: #ede4d6;
+    color: #1a1008;
+}
 body.modo-claro #habilidades {
-    background-color: #fff;
-    color: #111; /* Letras negras */
+    background-color: #f5efe6;
+    color: #1a1008;
 }
-body.modo-claro .proyecto,
+body.modo-claro .proyecto {
+    background: #f7f1e8;
+    border: 1px solid rgba(160,98,26,0.25);
+    border-top: 3px solid #b07d3a;
+    box-shadow: 0 4px 18px rgba(120,80,20,0.10);
+    color: #1a1008;
+}
 body.modo-claro #habilidades li {
-    background: #f0f0f0;
-    color: #111; /* Letras negras */
+    background: #f7f1e8;
+    color: #1a1008;
 }
 body.modo-claro #proyectos > h1,
 body.modo-claro #experiencia h2,
@@ -645,12 +698,14 @@ body.modo-claro #habilidades h2,
 body.modo-claro #contacto h2,
 body.modo-claro #redes h2,
 body.modo-claro .contador-proyectos {
-    background: none;
-    -webkit-text-fill-color: #0a0a0a;
-    color: #0a0a0a;
+    background: linear-gradient(90deg, #b07d3a, #d4944a);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: unset;
 }
 
-/* Letras negras en modo claro para todas las secciones principales */
+/* Letras oscuras en modo claro para todas las secciones principales */
 body.modo-claro .proyecto h3,
 body.modo-claro .proyecto p,
 body.modo-claro .proyecto a,
@@ -667,7 +722,25 @@ body.modo-claro #contacto h2,
 body.modo-claro #contacto label,
 body.modo-claro #contacto input,
 body.modo-claro #contacto textarea {
-    color: #111 !important;
+    color: #1a1008 !important;
+}
+body.modo-claro .exp-titulo {
+    color: #b07d3a !important;
+}
+body.modo-claro .exp-lugar {
+    color: rgba(60,35,10,0.6) !important;
+}
+body.modo-claro .exp-desc {
+    color: rgba(40,25,5,0.8) !important;
+}
+body.modo-claro #experiencia li {
+    background: rgba(160,98,26,0.08);
+    border-left-color: #b07d3a;
+}
+body.modo-claro .tag {
+    background: rgba(160,98,26,0.1);
+    border-color: rgba(160,98,26,0.35);
+    color: #7a4d10;
 }
 
 /* Fondo blanco para inputs y textarea en modo claro */
@@ -1043,74 +1116,95 @@ footer > p {
 
 /* ===== MODO CLARO HERO ===== */
 body.modo-claro #hero {
-    background: #fff;
-    color: #232931;
+    background: linear-gradient(-45deg, #f5ece0, #ede4d6, #e8ddd0, #f2ead8);
+    background-size: 400% 400%;
+    animation: gradientShift 12s ease infinite;
+    color: #1a1008;
 }
-body.modo-claro .hero-content h1,
+body.modo-claro .hero-content h1 {
+    background: linear-gradient(90deg, #b07d3a, #d4944a, #8b5e20);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
 body.modo-claro .hero-content h2,
 body.modo-claro .hero-content p {
-    color: #232931;
+    color: #3a2c1a;
+    -webkit-text-fill-color: #3a2c1a;
 }
 body.modo-claro .hero-btn {
-    background: #14FFEC;
-    color: #232931;
+    background: #b07d3a;
+    color: #fff;
+    border-color: #b07d3a;
 }
 body.modo-claro .hero-btn:hover {
-    background: #00eaff;
-    color: #232931;
+    background: #d4944a;
+    color: #fff;
 }
 body.modo-claro .hero-img img {
-    border-color: #14FFEC;
-    box-shadow: 0 0 20px rgba(44,54,57,0.15);
+    border-color: rgba(160,98,26,0.5);
+    box-shadow: 0 0 30px rgba(160,98,26,0.2);
 }
 
 /* ===== MODO CLARO CONTACTO ===== */
 body.modo-claro #contacto {
-    background: #fff;
-    color: #232931;
-    border-color: #14FFEC;
+    background: #ede4d6;
+    color: #1a1008;
 }
 body.modo-claro #contacto h2,
 body.modo-claro #contacto label {
-    color: #14FFEC;
+    color: #b07d3a;
+    -webkit-text-fill-color: unset;
 }
 body.modo-claro #contacto input,
 body.modo-claro #contacto textarea {
-    background: #f5f7fa;
-    color: #232931;
-    border: 1.5px solid #14FFEC;
+    background: #f7f1e8;
+    color: #1a1008;
+    border: 1.5px solid rgba(160,98,26,0.5);
+}
+body.modo-claro #contacto input:focus,
+body.modo-claro #contacto textarea:focus {
+    border-color: #b07d3a;
+    box-shadow: 0 0 8px rgba(160,98,26,0.2);
 }
 body.modo-claro #contacto button[type="submit"] {
-    background: #14FFEC;
-    color: #232931;
+    background: #b07d3a;
+    color: #fff;
 }
 body.modo-claro #contacto button[type="submit"]:hover {
-    background: #00eaff;
-    color: #232931;
+    background: #d4944a;
+    color: #fff;
 }
 
 /* ===== MODO CLARO REDES SOCIALES ===== */
 body.modo-claro #redes {
-    background: #fff;
-    color: #232931;
-    border-color: #14FFEC;
+    background: #f5efe6;
+    color: #1a1008;
 }
 body.modo-claro #redes h2 {
-    color: #14FFEC;
+    background: linear-gradient(90deg, #b07d3a, #d4944a);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
-body.modo-claro .red-icon {
-    background: #f0f0f0;
-    border-color: #14FFEC;
+body.modo-claro .redes-btn {
+    border-color: rgba(160,98,26,0.45);
+    color: #1a1008;
+    background: rgba(160,98,26,0.07);
 }
-body.modo-claro .red-icon:hover {
-    background: #14FFEC;
-    border-color: #00eaff;
+body.modo-claro .redes-btn:hover {
+    background: rgba(160,98,26,0.18);
+    border-color: #b07d3a;
+    box-shadow: 0 6px 20px rgba(160,98,26,0.15);
 }
-body.modo-claro .red-icon img {
-    filter: none;
+body.modo-claro .redes-btn-cv {
+    background: rgba(160,98,26,0.12);
+    border-color: #b07d3a;
+    color: #7a4d10;
 }
-body.modo-claro .red-icon:hover img {
-    filter: brightness(0) invert(1);
+body.modo-claro .redes-btn-cv:hover {
+    background: #b07d3a;
+    color: #fff;
 }
 
 /* ===== MODO CLARO BOTÓN "VOLVER ARRIBA" Y MODO ===== */

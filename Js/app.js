@@ -10,6 +10,40 @@ const lightbox = document.getElementById('lightbox');
 const lightboxImg = document.getElementById('lightbox-img');
 const lightboxClose = document.getElementById('lightbox-close');
 
+// ====== TYPEWRITER ======
+const typewriterEl = document.getElementById('typewriter');
+const roles = [
+    'Desarrollador Fullstack',
+    'Desarrollador de Videojuegos',
+    'Analista en Sistemas',
+    'Estudiante en Da Vinci',
+    'Apasionado por la IA'
+];
+let roleIndex = 0, charIndex = 0, deleting = false;
+
+function typeWriter() {
+    const current = roles[roleIndex];
+    if (!deleting) {
+        typewriterEl.textContent = current.slice(0, charIndex + 1);
+        charIndex++;
+        if (charIndex === current.length) {
+            deleting = true;
+            setTimeout(typeWriter, 1800);
+            return;
+        }
+    } else {
+        typewriterEl.textContent = current.slice(0, charIndex - 1);
+        charIndex--;
+        if (charIndex === 0) {
+            deleting = false;
+            roleIndex = (roleIndex + 1) % roles.length;
+        }
+    }
+    setTimeout(typeWriter, deleting ? 50 : 90);
+}
+
+if (typewriterEl) typeWriter();
+
 // ====== FUNCIONES ======
 
 // 1. Scroll suave para navbar
