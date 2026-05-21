@@ -835,8 +835,49 @@ body.modo-claro #navbar a:hover {
 .redes-links {
     display: flex;
     justify-content: center;
-    gap: 32px;
+    align-items: center;
+    gap: 20px;
     margin-top: 12px;
+    flex-wrap: wrap;
+}
+
+.redes-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 28px;
+    border: 2px solid rgba(20,255,236,0.4);
+    border-radius: 50px;
+    color: #fff;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 600;
+    background: rgba(20,255,236,0.06);
+    transition: background 0.2s, border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+
+.redes-btn img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+}
+
+.redes-btn:hover {
+    background: rgba(20,255,236,0.15);
+    border-color: #14FFEC;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(20,255,236,0.18);
+}
+
+.redes-btn-cv {
+    background: rgba(20,255,236,0.12);
+    border-color: #14FFEC;
+    color: #14FFEC;
+}
+
+.redes-btn-cv:hover {
+    background: #14FFEC;
+    color: #0a0a0a;
 }
 
 .red-icon {

@@ -47,7 +47,7 @@ function animarAlScroll() {
 // TODO: Reemplazá estos valores con los de tu cuenta en emailjs.com
 const EMAILJS_PUBLIC_KEY  = 'RvtJo3rMlTqeOwoXo';   // Account > API Keys
 const EMAILJS_SERVICE_ID  = 'service_ts5t32f';   // Email Services
-const EMAILJS_TEMPLATE_ID = 'template_k9q70b7';  // Email Templates
+const EMAILJS_TEMPLATE_ID = 'template_5fjsjgi';  // Email Templates
 
 emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
 
