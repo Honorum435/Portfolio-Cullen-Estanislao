@@ -78,6 +78,10 @@ header {
 .hero-content h1 {
   font-size: 3rem;
   font-family: 'Poppins', sans-serif;
+  background: linear-gradient(90deg, #ffffff, #14FFEC, #00b4d8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .hero-content h2 {
@@ -751,14 +755,20 @@ body.modo-claro #contacto textarea {
 }
 
 /* Ajuste para enlaces en modo claro */
-body.modo-claro .proyecto a,
-body.modo-claro #navbar a {
-    color: #111;
+body.modo-claro .proyecto a {
+    background: #b07d3a;
+    color: #fff;
 }
-body.modo-claro .proyecto a:hover,
+body.modo-claro .proyecto a:hover {
+    background: #d4944a;
+    color: #fff;
+}
+body.modo-claro #navbar a {
+    color: #1a1008;
+}
 body.modo-claro #navbar a:hover {
-    background: #00eaff;
-    color: #232931;
+    background: rgba(160,98,26,0.15);
+    color: #b07d3a;
 }
 
 /* Contador de proyectos */
