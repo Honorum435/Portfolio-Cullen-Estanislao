@@ -1,3 +1,140 @@
+// ====== PARTICLE CANVAS ======
+(function () {
+    const canvas = document.getElementById('hero-canvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    const COUNT = 70;
+    const CONNECT = 130;
+    let particles = [];
+    let raf;
+
+    function resize() {
+        canvas.width = canvas.offsetWidth;
+        canvas.height = canvas.offsetHeight;
+    }
+
+    function mkParticle(init) {
+        return {
+            x: Math.random() * canvas.width,
+            y: init ? Math.random() * canvas.height : canvas.height + 10,
+            r: Math.random() * 1.6 + 0.4,
+            vx: (Math.random() - 0.5) * 0.25,
+            vy: -(Math.random() * 0.35 + 0.1),
+            o: Math.random() * 0.45 + 0.15,
+        };
+    }
+
+    function frame() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        for (let i = 0; i < particles.length; i++) {
+            const p = particles[i];
+            for (let j = i + 1; j < particles.length; j++) {
+                const q = particles[j];
+                const dx = p.x - q.x, dy = p.y - q.y;
+                const d = Math.sqrt(dx * dx + dy * dy);
+                if (d < CONNECT) {
+                    ctx.beginPath();
+                    ctx.moveTo(p.x, p.y);
+                    ctx.lineTo(q.x, q.y);
+                    ctx.strokeStyle = `rgba(20,255,236,${(1 - d / CONNECT) * 0.1})`;
+                    ctx.lineWidth = 0.6;
+                    ctx.stroke();
+                }
+            }
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(20,255,236,${p.o})`;
+            ctx.fill();
+            p.x += p.vx;
+            p.y += p.vy;
+            if (p.y < -10 || p.x < -20 || p.x > canvas.width + 20) {
+                Object.assign(p, mkParticle(false));
+                p.x = Math.random() * canvas.width;
+            }
+        }
+        raf = requestAnimationFrame(frame);
+    }
+
+    function init() {
+        resize();
+        particles = Array.from({ length: COUNT }, () => mkParticle(true));
+        frame();
+    }
+
+    window.addEventListener('resize', () => {
+        cancelAnimationFrame(raf);
+        resize();
+        frame();
+    });
+
+    init();
+})();
+
+// ====== SCROLL PROGRESS ======
+(function () {
+    const bar = document.getElementById('scroll-progress');
+    if (!bar) return;
+    function update() {
+        const total = document.documentElement.scrollHeight - window.innerHeight;
+        bar.style.width = (total > 0 ? (window.scrollY / total) * 100 : 0) + '%';
+    }
+    window.addEventListener('scroll', update, { passive: true });
+})();
+
+// ====== CUSTOM CURSOR ======
+(function () {
+    const dot = document.getElementById('custom-cursor');
+    const ring = document.getElementById('custom-cursor-ring');
+    if (!dot || !ring) return;
+
+    let mx = -100, my = -100, rx = -100, ry = -100;
+
+    document.addEventListener('mousemove', e => {
+        mx = e.clientX; my = e.clientY;
+        dot.style.left = mx + 'px';
+        dot.style.top = my + 'px';
+    });
+    document.addEventListener('mouseleave', () => { dot.style.opacity = '0'; ring.style.opacity = '0'; });
+    document.addEventListener('mouseenter', () => { dot.style.opacity = '1'; ring.style.opacity = '1'; });
+
+    (function animRing() {
+        rx += (mx - rx) * 0.12;
+        ry += (my - ry) * 0.12;
+        ring.style.left = rx + 'px';
+        ring.style.top = ry + 'px';
+        requestAnimationFrame(animRing);
+    })();
+
+    document.addEventListener('mouseover', e => {
+        if (e.target.closest('a, button, input, textarea, label, [role="button"]')) {
+            dot.style.width = '18px'; dot.style.height = '18px';
+            ring.style.width = '52px'; ring.style.height = '52px';
+            ring.style.borderColor = 'rgba(20,255,236,0.9)';
+        }
+    });
+    document.addEventListener('mouseout', e => {
+        if (e.target.closest('a, button, input, textarea, label, [role="button"]')) {
+            dot.style.width = '10px'; dot.style.height = '10px';
+            ring.style.width = '36px'; ring.style.height = '36px';
+            ring.style.borderColor = 'rgba(20,255,236,0.5)';
+        }
+    });
+})();
+
+// ====== ACTIVE NAV SECTION ======
+(function () {
+    const secs = document.querySelectorAll('section[id]');
+    const links = document.querySelectorAll('#navbar a[href^="#"]');
+    const obs = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+            if (e.isIntersecting) {
+                links.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + e.target.id));
+            }
+        });
+    }, { threshold: 0.35 });
+    secs.forEach(s => obs.observe(s));
+})();
+
 // ====== VARIABLES ======
 const navbarLinks = document.querySelectorAll('#navbar a');
 const btnArriba = document.createElement('button');

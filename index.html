@@ -10,9 +10,11 @@
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 </head>
 <body>
+    <div id="scroll-progress"></div>
     <!-- Encabezado / Navegación -->
     <header>
         <nav id="navbar">
+            <div class="nav-logo">CE</div>
             <ul>
                 <li><a href="#presentacion">Presentación</a></li>
                 <li><a href="#sobre-mi">Sobre mí</a></li>
@@ -27,6 +29,7 @@
 <main>
     <!-- Hero Section Mejorada -->
     <section id="hero">
+      <canvas id="hero-canvas"></canvas>
       <div class="hero-content">
         <h1>Estanislao Cullen</h1>
         <h2>Transformo ideas en experiencias digitales</h2>
@@ -180,6 +183,8 @@
     
     <p>&copy; 2025 Estanislao Cullen. Todos los derechos reservados.</p>
     </footer>
+    <div class="custom-cursor" id="custom-cursor"></div>
+    <div class="custom-cursor-ring" id="custom-cursor-ring"></div>
     <script src="Js/app.js"></script>
 </body>
 </html>
