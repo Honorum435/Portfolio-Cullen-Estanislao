@@ -1230,3 +1230,325 @@ body.modo-claro .modo-btn:hover {
 }
 
 /* commit update: cambio invisible para push */
+
+/* ============================================
+   DESIGN IMPROVEMENTS
+   ============================================ */
+
+/* --- Scroll progress bar --- */
+#scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    width: 0%;
+    background: linear-gradient(90deg, #14FFEC, #00b4d8, #7c3aed);
+    z-index: 10001;
+    transition: width 0.08s linear;
+    border-radius: 0 2px 2px 0;
+    pointer-events: none;
+}
+
+/* --- Custom cursor --- */
+*, *::before, *::after {
+    cursor: none !important;
+}
+
+@media (hover: none), (pointer: coarse) {
+    *, *::before, *::after { cursor: auto !important; }
+    .custom-cursor, .custom-cursor-ring { display: none !important; }
+}
+
+.custom-cursor {
+    position: fixed;
+    width: 10px;
+    height: 10px;
+    background: #14FFEC;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 99999;
+    left: -20px;
+    top: -20px;
+    transform: translate(-50%, -50%);
+    transition: width 0.15s ease, height 0.15s ease;
+}
+
+.custom-cursor-ring {
+    position: fixed;
+    width: 36px;
+    height: 36px;
+    border: 1.5px solid rgba(20, 255, 236, 0.5);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 99998;
+    left: -50px;
+    top: -50px;
+    transform: translate(-50%, -50%);
+    transition: width 0.2s ease, height 0.2s ease, border-color 0.2s ease;
+}
+
+/* --- Navbar logo --- */
+.nav-logo {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 900;
+    font-size: 1.5rem;
+    letter-spacing: -1px;
+    background: linear-gradient(135deg, #14FFEC, #00b4d8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    user-select: none;
+    flex-shrink: 0;
+}
+
+/* --- Nav link animated underline --- */
+#navbar a {
+    position: relative;
+    padding-bottom: 2px;
+}
+
+#navbar a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background: linear-gradient(90deg, #14FFEC, #00b4d8);
+    border-radius: 2px;
+    transition: width 0.3s ease;
+}
+
+#navbar a:hover::after,
+#navbar a.active::after {
+    width: 100%;
+}
+
+#navbar a.active {
+    color: #ffffff;
+}
+
+/* --- Hero: canvas + stacking --- */
+#hero {
+    position: relative;
+    overflow: hidden;
+}
+
+#hero-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    opacity: 0.35;
+    pointer-events: none;
+}
+
+.hero-content,
+.hero-img {
+    position: relative;
+    z-index: 1;
+}
+
+/* --- Hero image animated glow --- */
+.hero-img img {
+    border: 3px solid rgba(20, 255, 236, 0.75);
+    box-shadow:
+        0 0 20px rgba(20, 255, 236, 0.35),
+        0 0 50px rgba(20, 255, 236, 0.12);
+    animation: imgGlow 3s ease-in-out infinite;
+    transition: transform 0.4s ease;
+}
+
+.hero-img img:hover {
+    transform: scale(1.05);
+    animation: none;
+    box-shadow:
+        0 0 30px rgba(20, 255, 236, 0.65),
+        0 0 70px rgba(20, 255, 236, 0.25);
+}
+
+@keyframes imgGlow {
+    0%, 100% {
+        box-shadow: 0 0 20px rgba(20, 255, 236, 0.35), 0 0 50px rgba(20, 255, 236, 0.12);
+        border-color: rgba(20, 255, 236, 0.75);
+    }
+    50% {
+        box-shadow: 0 0 35px rgba(20, 255, 236, 0.65), 0 0 80px rgba(20, 255, 236, 0.25), 0 0 120px rgba(20, 255, 236, 0.08);
+        border-color: rgba(20, 255, 236, 1);
+    }
+}
+
+/* --- Section title decorative line --- */
+#sobre-mi h2::after,
+#experiencia h2::after,
+#habilidades h2::after,
+#contacto h2::after,
+#redes h2::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, #14FFEC, rgba(0, 180, 216, 0.15));
+    margin: 10px auto 0;
+    border-radius: 2px;
+}
+
+/* --- Experience timeline --- */
+#experiencia ul {
+    position: relative;
+    padding-left: 20px;
+}
+
+#experiencia ul::before {
+    content: '';
+    position: absolute;
+    left: 5px;
+    top: 14px;
+    bottom: 14px;
+    width: 2px;
+    background: linear-gradient(to bottom, #14FFEC 0%, rgba(20, 255, 236, 0.1) 100%);
+    border-radius: 2px;
+}
+
+#experiencia li {
+    position: relative;
+    border-left: none;
+    border-radius: 12px;
+    border: 1px solid rgba(20, 255, 236, 0.1);
+    margin-left: 32px;
+}
+
+#experiencia li:hover {
+    border-color: rgba(20, 255, 236, 0.22);
+}
+
+#experiencia li::before {
+    content: '';
+    position: absolute;
+    left: -40px;
+    top: 26px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #14FFEC;
+    box-shadow: 0 0 10px rgba(20, 255, 236, 0.7), 0 0 20px rgba(20, 255, 236, 0.35);
+    border: 2px solid #232931;
+}
+
+/* --- Skill card radial glow on hover --- */
+#habilidades li {
+    position: relative;
+    overflow: hidden;
+}
+
+#habilidades li::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, rgba(20, 255, 236, 0.14) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.35s ease;
+}
+
+#habilidades li:hover::before {
+    opacity: 1;
+}
+
+#habilidades li img {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#habilidades li:hover img {
+    transform: scale(1.12);
+    box-shadow: 0 0 18px rgba(20, 255, 236, 0.5);
+}
+
+/* --- Project card: number badge + position --- */
+#proyectos {
+    counter-reset: project-counter;
+}
+
+.proyecto {
+    counter-increment: project-counter;
+    position: relative;
+}
+
+.proyecto::after {
+    content: counter(project-counter, decimal-leading-zero);
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 2.4rem;
+    font-weight: 900;
+    color: rgba(20, 255, 236, 0.07);
+    line-height: 1;
+    user-select: none;
+    pointer-events: none;
+}
+
+/* --- Light mode: nav logo stays legible --- */
+body.modo-claro .nav-logo {
+    background: linear-gradient(135deg, #b07d3a, #d4944a);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+body.modo-claro #navbar a::after {
+    background: linear-gradient(90deg, #b07d3a, #d4944a);
+}
+
+body.modo-claro #navbar a.active {
+    color: #1a1008;
+}
+
+body.modo-claro .hero-img img {
+    animation: imgGlowLight 3s ease-in-out infinite;
+}
+
+@keyframes imgGlowLight {
+    0%, 100% {
+        box-shadow: 0 0 20px rgba(160, 98, 26, 0.35), 0 0 50px rgba(160, 98, 26, 0.12);
+        border-color: rgba(160, 98, 26, 0.75);
+    }
+    50% {
+        box-shadow: 0 0 35px rgba(160, 98, 26, 0.55), 0 0 80px rgba(160, 98, 26, 0.2);
+        border-color: rgba(160, 98, 26, 1);
+    }
+}
+
+body.modo-claro #experiencia ul::before {
+    background: linear-gradient(to bottom, #b07d3a 0%, rgba(176, 125, 58, 0.1) 100%);
+}
+
+body.modo-claro #experiencia li::before {
+    background: #b07d3a;
+    box-shadow: 0 0 10px rgba(176, 125, 58, 0.6);
+    border-color: #ede4d6;
+}
+
+body.modo-claro #sobre-mi h2::after,
+body.modo-claro #experiencia h2::after,
+body.modo-claro #habilidades h2::after,
+body.modo-claro #contacto h2::after,
+body.modo-claro #redes h2::after {
+    background: linear-gradient(90deg, #b07d3a, rgba(212, 148, 74, 0.15));
+}
+
+body.modo-claro #scroll-progress {
+    background: linear-gradient(90deg, #b07d3a, #d4944a, #8b5e20);
+}
+
+body.modo-claro .custom-cursor {
+    background: #b07d3a;
+}
+
+body.modo-claro .custom-cursor-ring {
+    border-color: rgba(176, 125, 58, 0.55);
+}
+
+body.modo-claro .proyecto::after {
+    color: rgba(160, 98, 26, 0.07);
+}
