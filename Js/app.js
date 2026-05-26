@@ -1,341 +1,194 @@
-// ====== PARTICLE CANVAS ======
-(function () {
-    const canvas = document.getElementById('hero-canvas');
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d');
-    const COUNT = 70;
-    const CONNECT = 130;
-    let particles = [];
-    let raf;
+// ============================================================
+// CODEX — Portfolio Estanislao Cullen
+// ============================================================
 
-    function resize() {
-        canvas.width = canvas.offsetWidth;
-        canvas.height = canvas.offsetHeight;
+// ---------- Segmented progress bars ----------
+document.querySelectorAll('.progress').forEach((bar) => {
+    const filled = parseInt(bar.dataset.filled || '0', 10);
+    const total = parseInt(bar.dataset.total || '10', 10);
+    const variant = bar.dataset.variant || '';
+    for (let i = 0; i < total; i++) {
+        const seg = document.createElement('span');
+        seg.className = 'seg' + (i < filled ? ' on' : '') + (variant ? ' ' + variant : '');
+        bar.appendChild(seg);
     }
+});
 
-    function mkParticle(init) {
-        return {
-            x: Math.random() * canvas.width,
-            y: init ? Math.random() * canvas.height : canvas.height + 10,
-            r: Math.random() * 1.6 + 0.4,
-            vx: (Math.random() - 0.5) * 0.25,
-            vy: -(Math.random() * 0.35 + 0.1),
-            o: Math.random() * 0.45 + 0.15,
-        };
-    }
+// ---------- Typewriter ----------
+const typewriterEl = document.getElementById('typewriter');
+const ROLES = [
+    'Full Stack Developer',
+    'Game Designer en formación',
+    'Unity & React enthusiast',
+    'Worldbuilder de profesión',
+];
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    function frame() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        for (let i = 0; i < particles.length; i++) {
-            const p = particles[i];
-            for (let j = i + 1; j < particles.length; j++) {
-                const q = particles[j];
-                const dx = p.x - q.x, dy = p.y - q.y;
-                const d = Math.sqrt(dx * dx + dy * dy);
-                if (d < CONNECT) {
-                    ctx.beginPath();
-                    ctx.moveTo(p.x, p.y);
-                    ctx.lineTo(q.x, q.y);
-                    ctx.strokeStyle = `rgba(20,255,236,${(1 - d / CONNECT) * 0.1})`;
-                    ctx.lineWidth = 0.6;
-                    ctx.stroke();
+if (typewriterEl) {
+    if (reduceMotion) {
+        typewriterEl.textContent = ROLES[0];
+    } else {
+        let roleIdx = 0, charIdx = 0, deleting = false;
+        const tick = () => {
+            const full = ROLES[roleIdx];
+            if (!deleting) {
+                typewriterEl.textContent = full.slice(0, ++charIdx);
+                if (charIdx === full.length) {
+                    deleting = true;
+                    return setTimeout(tick, 1800);
+                }
+            } else {
+                typewriterEl.textContent = full.slice(0, --charIdx);
+                if (charIdx === 0) {
+                    deleting = false;
+                    roleIdx = (roleIdx + 1) % ROLES.length;
                 }
             }
-            ctx.beginPath();
-            ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-            ctx.fillStyle = `rgba(20,255,236,${p.o})`;
-            ctx.fill();
-            p.x += p.vx;
-            p.y += p.vy;
-            if (p.y < -10 || p.x < -20 || p.x > canvas.width + 20) {
-                Object.assign(p, mkParticle(false));
-                p.x = Math.random() * canvas.width;
-            }
+            setTimeout(tick, deleting ? 30 : 55);
+        };
+        tick();
+    }
+}
+
+// ---------- Smooth scroll ----------
+document.querySelectorAll('a[href^="#"]').forEach((a) => {
+    a.addEventListener('click', (e) => {
+        const id = a.getAttribute('href');
+        if (id.length < 2) return;
+        const target = document.querySelector(id);
+        if (target) {
+            e.preventDefault();
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            nav.classList.remove('open');
         }
-        raf = requestAnimationFrame(frame);
-    }
-
-    function init() {
-        resize();
-        particles = Array.from({ length: COUNT }, () => mkParticle(true));
-        frame();
-    }
-
-    window.addEventListener('resize', () => {
-        cancelAnimationFrame(raf);
-        resize();
-        frame();
-    });
-
-    init();
-})();
-
-// ====== SCROLL PROGRESS ======
-(function () {
-    const bar = document.getElementById('scroll-progress');
-    if (!bar) return;
-    function update() {
-        const total = document.documentElement.scrollHeight - window.innerHeight;
-        bar.style.width = (total > 0 ? (window.scrollY / total) * 100 : 0) + '%';
-    }
-    window.addEventListener('scroll', update, { passive: true });
-})();
-
-// ====== CUSTOM CURSOR ======
-(function () {
-    const dot = document.getElementById('custom-cursor');
-    const ring = document.getElementById('custom-cursor-ring');
-    if (!dot || !ring) return;
-
-    let mx = -100, my = -100, rx = -100, ry = -100;
-
-    document.addEventListener('mousemove', e => {
-        mx = e.clientX; my = e.clientY;
-        dot.style.left = mx + 'px';
-        dot.style.top = my + 'px';
-    });
-    document.addEventListener('mouseleave', () => { dot.style.opacity = '0'; ring.style.opacity = '0'; });
-    document.addEventListener('mouseenter', () => { dot.style.opacity = '1'; ring.style.opacity = '1'; });
-
-    (function animRing() {
-        rx += (mx - rx) * 0.12;
-        ry += (my - ry) * 0.12;
-        ring.style.left = rx + 'px';
-        ring.style.top = ry + 'px';
-        requestAnimationFrame(animRing);
-    })();
-
-    document.addEventListener('mouseover', e => {
-        if (e.target.closest('a, button, input, textarea, label, [role="button"]')) {
-            dot.style.width = '18px'; dot.style.height = '18px';
-            ring.style.width = '52px'; ring.style.height = '52px';
-            ring.style.borderColor = 'rgba(20,255,236,0.9)';
-        }
-    });
-    document.addEventListener('mouseout', e => {
-        if (e.target.closest('a, button, input, textarea, label, [role="button"]')) {
-            dot.style.width = '10px'; dot.style.height = '10px';
-            ring.style.width = '36px'; ring.style.height = '36px';
-            ring.style.borderColor = 'rgba(20,255,236,0.5)';
-        }
-    });
-})();
-
-// ====== ACTIVE NAV SECTION ======
-(function () {
-    const secs = document.querySelectorAll('section[id]');
-    const links = document.querySelectorAll('#navbar a[href^="#"]');
-    const obs = new IntersectionObserver(entries => {
-        entries.forEach(e => {
-            if (e.isIntersecting) {
-                links.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + e.target.id));
-            }
-        });
-    }, { threshold: 0.35 });
-    secs.forEach(s => obs.observe(s));
-})();
-
-// ====== VARIABLES ======
-const navbarLinks = document.querySelectorAll('#navbar a');
-const btnArriba = document.createElement('button');
-const form = document.querySelector('#contacto form');
-const modoBtn = document.createElement('button');
-const body = document.body;
-const proyectos = document.querySelectorAll('.proyecto');
-const contadorProyectos = document.createElement('div');
-const lightbox = document.getElementById('lightbox');
-const lightboxImg = document.getElementById('lightbox-img');
-const lightboxClose = document.getElementById('lightbox-close');
-
-// ====== TYPEWRITER ======
-const typewriterEl = document.getElementById('typewriter');
-const roles = [
-    'Desarrollador Fullstack',
-    'Desarrollador de Videojuegos',
-    'Analista en Sistemas',
-    'Estudiante en Da Vinci',
-    'Apasionado por la IA'
-];
-let roleIndex = 0, charIndex = 0, deleting = false;
-
-function typeWriter() {
-    const current = roles[roleIndex];
-    if (!deleting) {
-        typewriterEl.textContent = current.slice(0, charIndex + 1);
-        charIndex++;
-        if (charIndex === current.length) {
-            deleting = true;
-            setTimeout(typeWriter, 1800);
-            return;
-        }
-    } else {
-        typewriterEl.textContent = current.slice(0, charIndex - 1);
-        charIndex--;
-        if (charIndex === 0) {
-            deleting = false;
-            roleIndex = (roleIndex + 1) % roles.length;
-        }
-    }
-    setTimeout(typeWriter, deleting ? 50 : 90);
-}
-
-if (typewriterEl) typeWriter();
-
-// ====== FUNCIONES ======
-
-// 1. Scroll suave para navbar
-function scrollSuave(e) {
-    if (this.hash) {
-        e.preventDefault();
-        const seccion = document.querySelector(this.hash);
-        seccion.scrollIntoView({ behavior: 'smooth' });
-    }
-}
-
-// 2. Botón "Volver arriba"
-function mostrarBtnArriba() {
-    if (window.scrollY > 300) {
-        btnArriba.style.display = 'block';
-    } else {
-        btnArriba.style.display = 'none';
-    }
-}
-function volverArriba() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-// 3. Animaciones al hacer scroll (básico)
-function animarAlScroll() {
-    document.querySelectorAll('.proyecto, #experiencia, #habilidades').forEach(el => {
-        const rect = el.getBoundingClientRect();
-        if (rect.top < window.innerHeight - 100) {
-            el.classList.add('visible');
-        }
-    });
-}
-
-// 4. Envío del formulario con EmailJS
-// TODO: Reemplazá estos valores con los de tu cuenta en emailjs.com
-const EMAILJS_PUBLIC_KEY  = 'RvtJo3rMlTqeOwoXo';   // Account > API Keys
-const EMAILJS_SERVICE_ID  = 'service_ts5t32f';   // Email Services
-const EMAILJS_TEMPLATE_ID = 'template_5fjsjgi';  // Email Templates
-
-emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
-
-async function enviarFormulario(e) {
-    e.preventDefault();
-    const nombre  = form.querySelector('[name="nombre"]');
-    const email   = form.querySelector('[name="email"]');
-    const mensaje = form.querySelector('[name="mensaje"]');
-    const msgDiv  = document.getElementById('form-msg');
-    const btn     = document.getElementById('btn-enviar');
-
-    if (!nombre.value || !email.value || !mensaje.value || !email.value.includes('@')) {
-        msgDiv.textContent = 'Por favor, completá todos los campos correctamente.';
-        msgDiv.className = 'form-msg error';
-        return;
-    }
-
-    btn.textContent = 'Enviando...';
-    btn.disabled = true;
-    msgDiv.textContent = '';
-    msgDiv.className = 'form-msg';
-
-    try {
-        await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
-            from_name:  nombre.value,
-            reply_to:   email.value,
-            message:    mensaje.value,
-        });
-        msgDiv.textContent = '¡Mensaje enviado! Te respondo a la brevedad.';
-        msgDiv.className = 'form-msg success';
-        form.reset();
-    } catch (err) {
-        msgDiv.textContent = 'Hubo un error al enviar. Intentá de nuevo.';
-        msgDiv.className = 'form-msg error';
-    } finally {
-        btn.textContent = 'Enviar';
-        btn.disabled = false;
-    }
-}
-
-// 5. Modo oscuro/claro
-function alternarModo() {
-    body.classList.toggle('modo-claro');
-    modoBtn.textContent = body.classList.contains('modo-claro') ? '🌙 Modo Oscuro' : '☀️ Modo Claro';
-}
-
-// 6. Contador de proyectos
-function mostrarContadorProyectos() {
-    contadorProyectos.textContent = `Proyectos: ${proyectos.length}`;
-    contadorProyectos.className = 'contador-proyectos';
-    document.querySelector('#proyectos').prepend(contadorProyectos);
-}
-
-// ====== EVENTOS ======
-
-// Scroll suave
-navbarLinks.forEach(link => link.addEventListener('click', scrollSuave));
-
-// Lightbox
-document.querySelectorAll('.proyecto-gallery img').forEach(img => {
-    img.addEventListener('click', () => {
-        lightboxImg.src = img.src;
-        lightboxImg.alt = img.alt;
-        lightbox.classList.add('active');
-        document.body.style.overflow = 'hidden';
     });
 });
 
-function cerrarLightbox() {
-    lightbox.classList.remove('active');
-    lightboxImg.src = '';
-    document.body.style.overflow = '';
+// ---------- Mobile nav ----------
+const nav = document.querySelector('.nav');
+const burger = document.getElementById('nav-burger');
+if (burger) {
+    burger.addEventListener('click', () => {
+        const open = nav.classList.toggle('open');
+        burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
 }
 
-lightboxClose.addEventListener('click', cerrarLightbox);
-lightbox.addEventListener('click', e => { if (e.target === lightbox) cerrarLightbox(); });
-document.addEventListener('keydown', e => { if (e.key === 'Escape') cerrarLightbox(); });
+// ---------- Scroll reveal ----------
+const revealEls = document.querySelectorAll('.section-head, .about-grid, .inv-card, .skill-school, .entry, .contact-grid');
+revealEls.forEach((el) => el.classList.add('reveal'));
+if ('IntersectionObserver' in window && !reduceMotion) {
+    const io = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('in');
+                io.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.12 });
+    revealEls.forEach((el) => io.observe(el));
+} else {
+    revealEls.forEach((el) => el.classList.add('in'));
+}
 
-// Botón volver arriba
-btnArriba.textContent = '↑';
-btnArriba.className = 'btn-arriba';
-btnArriba.style.display = 'none';
-btnArriba.style.position = 'fixed';
-btnArriba.style.bottom = '30px';
-btnArriba.style.right = '30px';
-btnArriba.style.padding = '12px 18px';
-btnArriba.style.fontSize = '1.5rem';
-btnArriba.style.borderRadius = '50%';
-btnArriba.style.background = '#14FFEC';
-btnArriba.style.color = '#232931';
-btnArriba.style.border = 'none';
-btnArriba.style.cursor = 'pointer';
-document.body.appendChild(btnArriba);
-btnArriba.addEventListener('click', volverArriba);
-window.addEventListener('scroll', mostrarBtnArriba);
+// ---------- Toast ----------
+const toast = document.getElementById('toast');
+const toastMsg = document.getElementById('toast-msg');
+let toastTimer;
+function showToast(msg, isError) {
+    if (!toast) return;
+    toastMsg.textContent = msg;
+    toast.classList.toggle('error', !!isError);
+    toast.querySelector('.toast-icon').textContent = isError ? '▲' : '✓';
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toast.classList.remove('show'), 4000);
+}
 
-// Animaciones al hacer scroll
-window.addEventListener('scroll', animarAlScroll);
-window.addEventListener('DOMContentLoaded', animarAlScroll);
+// ---------- Contact form (validation + EmailJS) ----------
+const EMAILJS_PUBLIC_KEY  = 'RvtJo3rMlTqeOwoXo';
+const EMAILJS_SERVICE_ID  = 'service_ts5t32f';
+const EMAILJS_TEMPLATE_ID = 'template_5fjsjgi';
 
-// Envío de formulario
-if (form) form.addEventListener('submit', enviarFormulario);
+if (window.emailjs) emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
 
-// Modo oscuro/claro
-modoBtn.textContent = '☀️ Modo Claro';
-modoBtn.className = 'modo-btn';
-modoBtn.style.position = 'fixed';
-modoBtn.style.top = '30px';
-modoBtn.style.right = '30px';
-modoBtn.style.padding = '10px 18px';
-modoBtn.style.borderRadius = '20px';
-modoBtn.style.background = '#14FFEC';
-modoBtn.style.color = '#232931';
-modoBtn.style.border = 'none';
-modoBtn.style.cursor = 'pointer';
-document.body.appendChild(modoBtn);
-modoBtn.addEventListener('click', alternarModo);
+const form = document.getElementById('raven-form');
+const EMAIL_RE = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
 
-// Contador de proyectos
-mostrarContadorProyectos();
+function setFieldError(name, msg) {
+    const field = form.querySelector(`.field[data-field="${name}"]`);
+    if (!field) return;
+    field.classList.toggle('error', !!msg);
+    if (msg) field.querySelector('.err span').textContent = msg;
+}
+
+if (form) {
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const nombre = form.nombre.value.trim();
+        const email = form.email.value.trim();
+        const mensaje = form.mensaje.value.trim();
+
+        let ok = true;
+        if (!nombre) { setFieldError('nombre', 'Falta el nombre'); ok = false; } else setFieldError('nombre', '');
+        if (!EMAIL_RE.test(email)) { setFieldError('email', 'Correo inválido'); ok = false; } else setFieldError('email', '');
+        if (mensaje.length < 10) { setFieldError('mensaje', 'Mínimo 10 caracteres'); ok = false; } else setFieldError('mensaje', '');
+
+        if (!ok) return;
+
+        const btn = document.getElementById('btn-enviar');
+        btn.disabled = true;
+        btn.textContent = '◌ Enviando...';
+
+        try {
+            if (window.emailjs) {
+                await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+                    from_name: nombre,
+                    reply_to: email,
+                    message: mensaje,
+                });
+            }
+            form.reset();
+            showToast('El cuervo levantó vuelo · respondo en 24h', false);
+        } catch (err) {
+            showToast('El cuervo no pudo partir · intentá de nuevo', true);
+        } finally {
+            btn.disabled = false;
+            btn.textContent = '▸ Enviar pergamino';
+        }
+    });
+
+    // Clear error on input
+    form.querySelectorAll('input, textarea').forEach((el) => {
+        el.addEventListener('input', () => setFieldError(el.name, ''));
+    });
+}
+
+// ---------- Carousels ----------
+document.querySelectorAll('.thumb-carousel').forEach((thumb) => {
+    const track = thumb.querySelector('.carousel-track');
+    const slides = thumb.querySelectorAll('.carousel-slide');
+    const dots   = thumb.querySelectorAll('.carousel-dot');
+    const prev   = thumb.querySelector('.carousel-prev');
+    const next   = thumb.querySelector('.carousel-next');
+    if (!track || slides.length < 2) return;
+
+    let current = 0;
+
+    const goTo = (idx) => {
+        current = (idx + slides.length) % slides.length;
+        track.style.transform = `translateX(-${current * 100}%)`;
+        dots.forEach((d, i) => d.classList.toggle('active', i === current));
+    };
+
+    dots.forEach((dot, i) => dot.addEventListener('click', () => goTo(i)));
+    prev?.addEventListener('click', (e) => { e.stopPropagation(); goTo(current - 1); });
+    next?.addEventListener('click', (e) => { e.stopPropagation(); goTo(current + 1); });
+
+    // Auto-advance (pausa al hacer hover)
+    let autoTimer = setInterval(() => goTo(current + 1), 3200);
+    thumb.addEventListener('mouseenter', () => clearInterval(autoTimer));
+    thumb.addEventListener('mouseleave', () => {
+        autoTimer = setInterval(() => goTo(current + 1), 3200);
+    });
+});

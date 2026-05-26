@@ -1,190 +1,513 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cullen Estanislao</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Estanislao Cullen — Codex</title>
 
-    <link rel="stylesheet" href="Css/Style.css">
-    <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Manrope:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&display=swap" />
+
+    <link rel="stylesheet" href="Css/Style.css" />
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 </head>
 <body>
-    <div id="scroll-progress"></div>
-    <!-- Encabezado / Navegación -->
-    <header>
-        <nav id="navbar">
-            <div class="nav-logo">CE</div>
-            <ul>
-                <li><a href="#presentacion">Presentación</a></li>
-                <li><a href="#sobre-mi">Sobre mí</a></li>
-                <li><a href="#proyectos">Proyectos</a></li>
-                <li><a href="#experiencia">Experiencia</a></li>
-                <li><a href="#habilidades">Habilidades</a></li>
-                <li><a href="#contacto">Contacto</a></li>
-                <li><a href="#redes">Redes y CV</a></li>
+    <!-- Grain overlay -->
+    <div class="grain" aria-hidden="true"></div>
+
+    <!-- ============ NAV ============ -->
+    <nav class="nav">
+        <div class="nav-inner wrap">
+            <a href="#hero" class="nav-brand">
+                <span class="nav-sigil">CE</span>
+                <span class="nav-brand-text">CULLEN · <span>DEV</span></span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#about">Sobre mí</a></li>
+                <li><a href="#projects">Proyectos</a></li>
+                <li><a href="#skills">Habilidades</a></li>
+                <li><a href="#formation">Formación</a></li>
+                <li><a href="#contact">Contacto</a></li>
             </ul>
-        </nav>
-    </header>
-<main>
-    <!-- Hero Section Mejorada -->
-    <section id="hero">
-      <canvas id="hero-canvas"></canvas>
-      <div class="hero-content">
-        <h1>Estanislao Cullen</h1>
-        <h2>Transformo ideas en experiencias digitales</h2>
-        <p>Soy <span id="typewriter"></span><span class="cursor">|</span></p>
-        <a href="#proyectos" class="hero-btn">Ver mis proyectos</a>
-      </div>
-      <div class="hero-img">
-        <img src="Img/Foto-perfil.jpeg" alt="Foto de Estanislao Cullen">
-      </div>
-    </section>
+            <a href="#contact" class="nav-cta">Enviar mensaje</a>
+            <button class="nav-burger" id="nav-burger" aria-label="Abrir menú" aria-expanded="false">☰</button>
+        </div>
+    </nav>
 
-    <!-- Sección de proyectos -->
-    <section id="proyectos">
-        <h1>Proyectos</h1>
-        <div class="proyecto">
-            <h3>Proyecto Menú Digital</h3>
-            <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span></div>
-            <img src="Img/Menu.png" alt="Imagen Proyecto 1" width="200">
-            <p>Un menú digital para la UTN. Fue mi segundo trabajo práctico.</p>
-            <a href="https://honorum435.github.io/menu-digital/">Ver más</a>
-        </div>
-        <div class="proyecto">
-            <h3>Proyecto Tarjeta de Presentación</h3>
-            <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span></div>
-            <img src="Img/tarjeta-presentacion.png" alt="Imagen Proyecto 2" width="200">
-            <p>Una tarjeta de presentación como mi primer trabajo para familiarizarme con HTML.</p>
-            <a href="https://honorum435.github.io/Tarjeta-Presentacion/">Ver más</a>
-        </div>
-        <div class="proyecto">
-            <h3>Clon de una página con Flexbox</h3>
-            <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">Flexbox</span></div>
-            <img src="Img/tp3.png" alt="Imagen Proyecto 3" width="200">
-            <p>Tercer trabajo práctico, el cual era replicar una página web usando todo el conocimiento dado.</p>
-            <a href="https://honorum435.github.io/tp3-flexbox-clon/">Ver más</a>
-        </div>
-        <div class="proyecto">
-            <h3>AoM Build Orders</h3>
-            <div class="tags"><span class="tag">Electron</span><span class="tag">React</span><span class="tag">TypeScript</span><span class="tag">Express</span></div>
-           <img src="Img/Proyecto4.png" alt="Imagen Proyecto 4" width="200">
-           <img src="Img/Proyecto4_2.png" alt="React" width="20">
-            <p>Aplicación de escritorio (Electron + React + TypeScript) para consultar build orders de Age of Mythology: Retold. Muestra un overlay sobre el juego, incluye scraper integrado, caché local y soporte para todas las civilizaciones.</p>
-            <a href="https://github.com/Honorum435/AomBuildOrder" target="_blank">Ver en GitHub</a>
-        </div>
-        <div class="proyecto">
-            <h3>QuicoPay</h3>
-            <div class="tags"><span class="tag">Node.js</span><span class="tag">Prisma</span><span class="tag">JavaScript</span></div>
-            <div class="proyecto-gallery">
-                <img src="Img/quickopay-4.jpeg" alt="QuicoPay home">
-                <img src="Img/quickopay-1.jpeg" alt="QuicoPay cuenta">
-                <img src="Img/quickopay-3.jpeg" alt="QuicoPay compra">
-                <img src="Img/quickopay-2.jpeg" alt="QuicoPay detalle">
-                <img src="Img/quickopay-5.jpeg" alt="QuicoPay pago">
-                <img src="Img/quickopay-6.jpeg" alt="QuicoPay movimientos">
-            </div>
-            <p>App móvil para el negocio de un amigo. Gestiona cuentas corrientes de clientes, registra compras desde un catálogo de productos, registra pagos y lleva el historial de movimientos.</p>
-            <a href="https://github.com/Honorum435/AppParaCuentas" target="_blank">Ver en GitHub</a>
-        </div>
-    </section>
+    <main>
+        <!-- ============ HERO (Character Sheet) ============ -->
+        <section id="hero">
+            <div class="wrap hero-grid">
+                <div class="hero-left">
+                    <div class="hero-eyebrow">
+                        <span class="dot"></span>
+                        DISPONIBLE PARA PROYECTOS · PARANÁ, AR
+                    </div>
 
-    <!-- Sección Sobre mí -->
-    <section id="sobre-mi">
-        <div class="sobre-mi-wrapper">
-            <div class="sobre-mi-foto">
-                <img src="Img/Foto-perfil.jpeg" alt="Foto de Estanislao Cullen">
-            </div>
-            <div class="sobre-mi-content">
-                <h2>Sobre mí</h2>
-                <p>Soy <strong>Estanislao Cullen</strong>, tengo 27 años y vivo en Paraná, Argentina. Me apasionan los videojuegos desde siempre &mdash; no solo jugarlos, sino entender cómo están construidos, qué decisiones hay detrás de cada mecánica y cómo se genera una experiencia memorable.</p>
-                <p>Además de programar, soy fanático de <strong>Dungeons &amp; Dragons</strong>: el rol, la narrativa y el worldbuilding son parte de cómo pienso. Uno de mis grandes sueños es convertir una campaña de D&amp;D en un videojuego.</p>
-                <p>Tengo proyectos en <strong>Unity</strong> y <strong>Construct 2</strong>, y todos los días trato de escribir al menos un poco de código, más allá de las clases. Estoy construyendo mi camino en el desarrollo con constancia y mucha curiosidad.</p>
-                <div class="sobre-mi-galeria">
-                    <span class="sobre-mi-galeria-titulo">TP Construct 2</span>
-                    <div class="sobre-mi-galeria-grid">
-                        <img src="Img/Construct2_1.png" alt="Construct 2 screenshot 1">
-                        <img src="Img/Construct2_2.png" alt="Construct 2 screenshot 2">
-                        <img src="Img/Construct2_3.png" alt="Construct 2 screenshot 3">
+                    <h1 class="hero-name">
+                        ESTANISLAO
+                        <span class="last">Cullen</span>
+                    </h1>
+
+                    <p class="hero-tagline">
+                        <strong><span id="typewriter"></span><span class="tw-caret">▍</span></strong>
+                        <br />
+                        Transformo ideas en experiencias digitales — código que se siente como diseño, diseño que se siente como un juego.
+                    </p>
+
+                    <div class="hero-cta-row">
+                        <a href="#projects" class="btn btn-primary"><span>▸</span> Ver proyectos</a>
+                        <a href="#contact" class="btn">Iniciar misión</a>
+                    </div>
+
+                    <div class="hero-stats">
+                        <div class="stat"><div class="val">05</div><div class="lbl">Proyectos</div></div>
+                        <div class="stat"><div class="val">07</div><div class="lbl">Stack core</div></div>
+                        <div class="stat"><div class="val">27</div><div class="lbl">Nivel</div></div>
+                        <div class="stat"><div class="val">∞</div><div class="lbl">Curiosidad</div></div>
+                    </div>
+                </div>
+
+                <div class="char-card">
+                    <span class="char-corners tl"></span>
+                    <span class="char-corners tr"></span>
+                    <span class="char-corners bl"></span>
+                    <span class="char-corners br"></span>
+                    <div class="char-class">▾ CLASE · FULL-STACK · ANALISTA EN SISTEMAS ▾</div>
+                    <div class="char-portrait">
+                        <img src="Img/Foto-perfil.jpeg" alt="Estanislao Cullen" />
+                        <div class="char-portrait-overlay">
+                            <span>LVL 27</span>
+                            <span>EXP ∞</span>
+                        </div>
+                    </div>
+                    <div class="char-name">ESTANISLAO CULLEN</div>
+                    <div class="char-title">Paraná · Argentina</div>
+
+                    <div class="attrs">
+                        <div class="attr">
+                            <div class="attr-name"><span class="lbl">CODE</span><span class="val">18 / 20</span></div>
+                            <div class="progress" data-filled="9"></div>
+                        </div>
+                        <div class="attr">
+                            <div class="attr-name"><span class="lbl">DESIGN</span><span class="val">14 / 20</span></div>
+                            <div class="progress" data-filled="7" data-variant="violet"></div>
+                        </div>
+                        <div class="attr">
+                            <div class="attr-name"><span class="lbl">GAMEDEV</span><span class="val">15 / 20</span></div>
+                            <div class="progress" data-filled="7" data-variant="violet"></div>
+                        </div>
+                        <div class="attr">
+                            <div class="attr-name"><span class="lbl">LORE</span><span class="val">20 / 20</span></div>
+                            <div class="progress" data-filled="10"></div>
+                        </div>
                     </div>
                 </div>
             </div>
+        </section>
+
+        <!-- ============ ABOUT (Quest Log) ============ -->
+        <section id="about">
+            <div class="wrap">
+                <div class="section-head">
+                    <div>
+                        <div class="eyebrow">CAPÍTULO 02 — LORE</div>
+                        <h2 class="section-title">Sobre mí</h2>
+                    </div>
+                    <div class="meta">// QUEST LOG · ENTRY 001</div>
+                </div>
+
+                <div class="about-grid">
+                    <div class="scroll-card">
+                        <span class="corner bl"></span>
+                        <span class="corner br"></span>
+                        <div class="quest-header">
+                            <div class="qh-title">DIARIO DEL DEV</div>
+                            <div class="qh-id">DAY 0027 · YEARS</div>
+                        </div>
+
+                        <div class="about-text">
+                            <p>
+                                <span class="drop">S</span>oy <strong>Estanislao Cullen</strong>, tengo 27 años y vivo en
+                                Paraná, Argentina. Me apasionan los videojuegos desde siempre — no
+                                solo jugarlos, sino entender cómo están construidos, qué decisiones
+                                hay detrás de cada mecánica y cómo se genera una experiencia memorable.
+                            </p>
+                            <p>
+                                Además de programar, soy fanático de <strong>Dungeons &amp; Dragons</strong>: el
+                                rol, la narrativa y el worldbuilding son parte de cómo pienso.
+                                Tengo proyectos en <strong>Unity</strong> y <strong>Construct 2</strong>, y
+                                todos los días trato de escribir al menos un poco de código.
+                            </p>
+                        </div>
+
+                        <div class="dream-card">
+                            <div class="dream-icon">✦</div>
+                            <div class="dream-txt">
+                                <strong>OBJETIVO PRINCIPAL</strong><br />
+                                Convertir una campaña de D&amp;D en un videojuego
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="about-gallery">
+                        <div class="gallery-item big">
+                            <img src="Img/Construct2_1.png" alt="Construct 2 screenshot" />
+                            <div class="gallery-label">TP / CONSTRUCT 2 · 01</div>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="Img/Construct2_2.png" alt="Construct 2 screenshot 2" />
+                            <div class="gallery-label">TP · 02</div>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="Img/Construct2_3.png" alt="Construct 2 screenshot 3" />
+                            <div class="gallery-label">TP · 03</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ PROJECTS (Inventario) ============ -->
+        <section id="projects">
+            <div class="wrap">
+                <div class="section-head">
+                    <div>
+                        <div class="eyebrow">CAPÍTULO 03 — LOOT</div>
+                        <h2 class="section-title">Inventario de proyectos</h2>
+                    </div>
+                    <div class="meta">// 5 ITEMS · ORDENADOS POR RAREZA</div>
+                </div>
+
+                <div class="inv-grid">
+                    <!-- AoM Build Orders -->
+                    <article class="inv-card size-l rarity-legendary">
+                        <span class="corner tl"></span><span class="corner tr"></span>
+                        <span class="corner bl"></span><span class="corner br"></span>
+                        <div class="thumb thumb-carousel">
+                            <span class="rarity-tag">◆ LEGENDARY</span>
+                            <span class="item-id">#AOM-04</span>
+                            <div class="carousel-track">
+                                <img class="carousel-slide" src="Img/Proyecto4.png" alt="AoM Build Orders — Vista 1" />
+                                <img class="carousel-slide" src="Img/Proyecto4_2.png" alt="AoM Build Orders — Vista 2" />
+                            </div>
+                            <button class="carousel-btn carousel-prev" aria-label="Imagen anterior">&#8249;</button>
+                            <button class="carousel-btn carousel-next" aria-label="Imagen siguiente">&#8250;</button>
+                            <div class="carousel-dots">
+                                <span class="carousel-dot active"></span>
+                                <span class="carousel-dot"></span>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h3 class="card-title">AoM Build Orders</h3>
+                            <div class="card-subtitle">Desktop overlay · Electron</div>
+                            <p class="card-desc">Aplicación de escritorio para consultar build orders de Age of Mythology: Retold. Overlay sobre el juego, scraper integrado, caché local y soporte para todas las civilizaciones.</p>
+                            <div class="stack">
+                                <span class="chip">Electron</span><span class="chip">React</span><span class="chip">TypeScript</span><span class="chip">Express</span>
+                            </div>
+                            <div class="actions">
+                                <a class="action" href="https://github.com/Honorum435/AomBuildOrder" target="_blank" rel="noreferrer">⌗ Código</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- QuicoPay -->
+                    <article class="inv-card size-m rarity-epic">
+                        <span class="corner tl"></span><span class="corner tr"></span>
+                        <span class="corner bl"></span><span class="corner br"></span>
+                        <div class="thumb thumb-carousel thumb-portrait">
+                            <span class="rarity-tag">◆ EPIC</span>
+                            <span class="item-id">#QPY-05</span>
+                            <div class="carousel-track">
+                                <img class="carousel-slide" src="Img/quickopay-home.jpeg" alt="QuicoPay — Home" />
+                                <img class="carousel-slide" src="Img/quickopay-1.jpeg" alt="QuicoPay — Vista 1" />
+                                <img class="carousel-slide" src="Img/quickopay-2.jpeg" alt="QuicoPay — Vista 2" />
+                                <img class="carousel-slide" src="Img/quickopay-3.jpeg" alt="QuicoPay — Vista 3" />
+                                <img class="carousel-slide" src="Img/quickopay-4.jpeg" alt="QuicoPay — Vista 4" />
+                                <img class="carousel-slide" src="Img/quickopay-5.jpeg" alt="QuicoPay — Vista 5" />
+                                <img class="carousel-slide" src="Img/quickopay-6.jpeg" alt="QuicoPay — Vista 6" />
+                            </div>
+                            <button class="carousel-btn carousel-prev" aria-label="Imagen anterior">&#8249;</button>
+                            <button class="carousel-btn carousel-next" aria-label="Imagen siguiente">&#8250;</button>
+                            <div class="carousel-dots">
+                                <span class="carousel-dot active"></span>
+                                <span class="carousel-dot"></span>
+                                <span class="carousel-dot"></span>
+                                <span class="carousel-dot"></span>
+                                <span class="carousel-dot"></span>
+                                <span class="carousel-dot"></span>
+                                <span class="carousel-dot"></span>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h3 class="card-title">QuicoPay</h3>
+                            <div class="card-subtitle">Mobile app · Cuentas corrientes</div>
+                            <p class="card-desc">App móvil para gestionar cuentas corrientes: registra compras desde un catálogo, pagos e historial completo de movimientos.</p>
+                            <div class="stack">
+                                <span class="chip">Node.js</span><span class="chip">Prisma</span><span class="chip">JavaScript</span>
+                            </div>
+                            <div class="actions">
+                                <a class="action" href="https://github.com/Honorum435/AppParaCuentas" target="_blank" rel="noreferrer">⌗ Código</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Menú Digital -->
+                    <article class="inv-card size-m rarity-rare">
+                        <span class="corner tl"></span><span class="corner tr"></span>
+                        <span class="corner bl"></span><span class="corner br"></span>
+                        <div class="thumb">
+                            <span class="rarity-tag">◆ RARE</span>
+                            <span class="item-id">#MNU-01</span>
+                            <img src="Img/Menu.png" alt="Menú Digital" />
+                        </div>
+                        <div class="card-body">
+                            <h3 class="card-title">Menú Digital</h3>
+                            <div class="card-subtitle">Web · UTN TP-02</div>
+                            <p class="card-desc">Un menú digital para la UTN. Segundo trabajo práctico — primera experiencia con interacción real.</p>
+                            <div class="stack">
+                                <span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">JavaScript</span>
+                            </div>
+                            <div class="actions">
+                                <a class="action primary" href="https://honorum435.github.io/menu-digital/" target="_blank" rel="noreferrer">▸ Ver en vivo</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Tarjeta de Presentación -->
+                    <article class="inv-card size-s rarity-common">
+                        <span class="corner tl"></span><span class="corner tr"></span>
+                        <span class="corner bl"></span><span class="corner br"></span>
+                        <div class="thumb">
+                            <span class="rarity-tag">◆ COMMON</span>
+                            <span class="item-id">#CRD-02</span>
+                            <img src="Img/tarjeta-presentacion.png" alt="Tarjeta de Presentación" />
+                        </div>
+                        <div class="card-body">
+                            <h3 class="card-title">Tarjeta de Presentación</h3>
+                            <div class="card-subtitle">Web · UTN TP-01</div>
+                            <p class="card-desc">Primer trabajo para familiarizarme con HTML. La primera línea siempre se recuerda.</p>
+                            <div class="stack">
+                                <span class="chip">HTML</span><span class="chip">CSS</span>
+                            </div>
+                            <div class="actions">
+                                <a class="action primary" href="https://honorum435.github.io/Tarjeta-Presentacion/" target="_blank" rel="noreferrer">▸ Ver en vivo</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Clon Flexbox -->
+                    <article class="inv-card size-s rarity-rare">
+                        <span class="corner tl"></span><span class="corner tr"></span>
+                        <span class="corner bl"></span><span class="corner br"></span>
+                        <div class="thumb">
+                            <span class="rarity-tag">◆ RARE</span>
+                            <span class="item-id">#FLX-03</span>
+                            <img src="Img/tp3.png" alt="Clon Flexbox" />
+                        </div>
+                        <div class="card-body">
+                            <h3 class="card-title">Clon Flexbox</h3>
+                            <div class="card-subtitle">Web · UTN TP-03</div>
+                            <p class="card-desc">Replicar una página web usando todo el conocimiento del curso — flexbox a fondo y atención al detalle visual.</p>
+                            <div class="stack">
+                                <span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">Flexbox</span>
+                            </div>
+                            <div class="actions">
+                                <a class="action primary" href="https://honorum435.github.io/tp3-flexbox-clon/" target="_blank" rel="noreferrer">▸ Ver en vivo</a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ SKILLS (Spellbook) ============ -->
+        <section id="skills">
+            <div class="wrap">
+                <div class="section-head">
+                    <div>
+                        <div class="eyebrow">CAPÍTULO 04 — SPELLBOOK</div>
+                        <h2 class="section-title">Árbol de habilidades</h2>
+                    </div>
+                    <div class="meta">// 4 ESCUELAS · 16 DISCIPLINAS</div>
+                </div>
+
+                <div class="skills-grid">
+                    <div class="skill-school">
+                        <h3 class="school-head"><span class="runa"><span>⌬</span></span>Frontend · Web Conjuration</h3>
+                        <div class="school-skills">
+                            <div class="skill-row"><span class="sk-name">HTML</span><span class="sk-lvl">MASTER · 9/10</span><div class="progress" data-filled="9"></div></div>
+                            <div class="skill-row"><span class="sk-name">CSS</span><span class="sk-lvl">ADEPT · 8/10</span><div class="progress" data-filled="8"></div></div>
+                            <div class="skill-row"><span class="sk-name">JavaScript</span><span class="sk-lvl">ADEPT · 8/10</span><div class="progress" data-filled="8"></div></div>
+                            <div class="skill-row"><span class="sk-name">React</span><span class="sk-lvl">ADEPT · 7/10</span><div class="progress" data-filled="7"></div></div>
+                        </div>
+                    </div>
+
+                    <div class="skill-school">
+                        <h3 class="school-head"><span class="runa violet"><span>⌖</span></span>Backend &amp; Tools</h3>
+                        <div class="school-skills">
+                            <div class="skill-row"><span class="sk-name">Node.js</span><span class="sk-lvl">JOURNEYMAN · 6/10</span><div class="progress" data-filled="6" data-variant="violet"></div></div>
+                            <div class="skill-row"><span class="sk-name">Express</span><span class="sk-lvl">JOURNEYMAN · 6/10</span><div class="progress" data-filled="6" data-variant="violet"></div></div>
+                            <div class="skill-row"><span class="sk-name">Prisma · SQL</span><span class="sk-lvl">JOURNEYMAN · 6/10</span><div class="progress" data-filled="6" data-variant="violet"></div></div>
+                            <div class="skill-row"><span class="sk-name">Git</span><span class="sk-lvl">ADEPT · 8/10</span><div class="progress" data-filled="8" data-variant="violet"></div></div>
+                        </div>
+                    </div>
+
+                    <div class="skill-school">
+                        <h3 class="school-head"><span class="runa"><span>✦</span></span>Game Dev · Arcane Arts</h3>
+                        <div class="school-skills">
+                            <div class="skill-row"><span class="sk-name">Unity</span><span class="sk-lvl">JOURNEYMAN · 5/10</span><div class="progress" data-filled="5"></div></div>
+                            <div class="skill-row"><span class="sk-name">Construct 2</span><span class="sk-lvl">JOURNEYMAN · 6/10</span><div class="progress" data-filled="6"></div></div>
+                            <div class="skill-row"><span class="sk-name">TypeScript</span><span class="sk-lvl">JOURNEYMAN · 6/10</span><div class="progress" data-filled="6"></div></div>
+                            <div class="skill-row"><span class="sk-name">Diseño 2D</span><span class="sk-lvl">ADEPT · 7/10</span><div class="progress" data-filled="7"></div></div>
+                        </div>
+                    </div>
+
+                    <div class="skill-school">
+                        <h3 class="school-head"><span class="runa violet"><span>◈</span></span>Méta · Soft skills</h3>
+                        <div class="school-skills">
+                            <div class="skill-row"><span class="sk-name">Worldbuilding</span><span class="sk-lvl">MASTER · 10/10</span><div class="progress" data-filled="10" data-variant="violet"></div></div>
+                            <div class="skill-row"><span class="sk-name">Constancia</span><span class="sk-lvl">MASTER · 9/10</span><div class="progress" data-filled="9" data-variant="violet"></div></div>
+                            <div class="skill-row"><span class="sk-name">Curiosidad</span><span class="sk-lvl">MASTER · 10/10</span><div class="progress" data-filled="10" data-variant="violet"></div></div>
+                            <div class="skill-row"><span class="sk-name">Trabajo en equipo</span><span class="sk-lvl">ADEPT · 7/10</span><div class="progress" data-filled="7" data-variant="violet"></div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ FORMATION (Codex Timeline) ============ -->
+        <section id="formation">
+            <div class="wrap">
+                <div class="section-head">
+                    <div>
+                        <div class="eyebrow">CAPÍTULO 05 — CODEX</div>
+                        <h2 class="section-title">Formación</h2>
+                    </div>
+                    <div class="meta">// 3 QUESTS · 2 IN-PROGRESS</div>
+                </div>
+
+                <div class="codex">
+                    <div class="entry active">
+                        <div class="entry-meta">
+                            <span class="status active">● EN CURSO</span>
+                            <span class="where">Escuela Da Vinci</span>
+                        </div>
+                        <h4>Diseño y Programación de Videojuegos</h4>
+                        <p>Carrera orientada al desarrollo de videojuegos: programación, diseño de niveles, arte 2D/3D y mecánicas de juego.</p>
+                    </div>
+                    <div class="entry active">
+                        <div class="entry-meta">
+                            <span class="status active">● EN CURSO</span>
+                            <span class="where">Escuela Da Vinci</span>
+                        </div>
+                        <h4>Analista en Sistemas</h4>
+                        <p>Formación técnica en análisis y diseño de sistemas, bases de datos, arquitectura de software y gestión de proyectos.</p>
+                    </div>
+                    <div class="entry">
+                        <div class="entry-meta">
+                            <span class="status done">● COMPLETADO</span>
+                            <span class="where">UTN — Universidad Tecnológica Nacional</span>
+                        </div>
+                        <h4>Full Stack Developer</h4>
+                        <p>Desarrollo web completo: HTML, CSS, JavaScript, React, Node.js, bases de datos SQL y despliegue en producción.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ CONTACT (Raven) ============ -->
+        <section id="contact">
+            <div class="wrap">
+                <div class="section-head">
+                    <div>
+                        <div class="eyebrow">CAPÍTULO 06 — RAVEN</div>
+                        <h2 class="section-title">Enviar mensaje</h2>
+                    </div>
+                    <div class="meta">// LATENCIA · 24 H · RTA GARANTIZADA</div>
+                </div>
+
+                <div class="contact-grid">
+                    <form class="raven-card" id="raven-form" novalidate>
+                        <span class="corner bl"></span>
+                        <span class="corner br"></span>
+                        <div class="quest-header">
+                            <div class="qh-title">PERGAMINO DEL VIAJERO</div>
+                            <div class="qh-id">FORM · v1</div>
+                        </div>
+
+                        <div class="field" data-field="nombre">
+                            <label for="nombre">Nombre del invocador</label>
+                            <input type="text" id="nombre" name="nombre" placeholder="Estanislao..." />
+                            <div class="err">▲ <span></span></div>
+                        </div>
+
+                        <div class="field" data-field="email">
+                            <label for="email">Correo arcano</label>
+                            <input type="email" id="email" name="email" placeholder="tu@correo.com" />
+                            <div class="err">▲ <span></span></div>
+                        </div>
+
+                        <div class="field" data-field="mensaje">
+                            <label for="mensaje">Mensaje</label>
+                            <textarea id="mensaje" name="mensaje" rows="5" placeholder="Contame tu idea..."></textarea>
+                            <div class="err">▲ <span></span></div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-block" id="btn-enviar">▸ Enviar pergamino</button>
+                    </form>
+
+                    <aside class="contact-aside">
+                        <div class="aside-head">── O ENCONTRAME EN ──</div>
+
+                        <a class="guild-link" href="https://github.com/Honorum435" target="_blank" rel="noreferrer">
+                            <span class="emblem">
+                                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.7.5.5 5.6.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.2.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.4-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.6-.3-5.3-1.3-5.3-5.8 0-1.3.5-2.3 1.2-3.2-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2 1-.3 2-.4 3-.4s2 .1 3 .4c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.8.1 3.1.8.9 1.2 1.9 1.2 3.2 0 4.5-2.7 5.5-5.3 5.8.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.6 18.3.5 12 .5z" /></svg>
+                            </span>
+                            <span class="info"><span class="lbl">GUILD HALL</span><span class="val">github.com/Honorum435</span></span>
+                            <span class="arrow">→</span>
+                        </a>
+
+                        <a class="guild-link" href="https://www.linkedin.com/in/estanislao-cullen-650859262/" target="_blank" rel="noreferrer">
+                            <span class="emblem">
+                                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.95v5.66H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 11-.01-4.12 2.06 2.06 0 010 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.23 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.72V1.72C24 .77 23.21 0 22.23 0z" /></svg>
+                            </span>
+                            <span class="info"><span class="lbl">TAVERN</span><span class="val">LinkedIn</span></span>
+                            <span class="arrow">→</span>
+                        </a>
+
+                        <a class="guild-link" href="Docs/CV-Estanislao-Cullen.pdf" download>
+                            <span class="emblem">
+                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" /><polyline points="14 2 14 8 20 8" /><line x1="12" y1="18" x2="12" y2="12" /><polyline points="9 15 12 18 15 15" /></svg>
+                            </span>
+                            <span class="info"><span class="lbl">PERGAMINO</span><span class="val">Descargar CV</span></span>
+                            <span class="arrow">→</span>
+                        </a>
+
+                        <div class="status-card">
+                            <div class="sc-head">✦ ESTADO ACTUAL</div>
+                            <div class="sc-txt">Buscando colaboraciones en game dev y oportunidades full-stack. Si tu proyecto tiene alma, escribime.</div>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="wrap footer-inner">
+            <div class="footer-text">© 2025 ESTANISLAO CULLEN · <span>NIVEL 27</span> · TODOS LOS DERECHOS RESERVADOS</div>
+            <div class="footer-text">FORJADO EN <span>PARANÁ, AR</span></div>
         </div>
-    </section>
-
-    <!-- Sección de experiencia -->
-    <section id="experiencia">
-        <h2>Formación</h2>
-        <ul>
-            <li>
-                <span class="exp-titulo">Diseño y Programación de Videojuegos</span>
-                <span class="exp-lugar">Escuela Da Vinci &mdash; En curso</span>
-                <span class="exp-desc">Carrera orientada al desarrollo de videojuegos: programación, diseño de niveles, arte 2D/3D y mecánicas de juego.</span>
-            </li>
-            <li>
-                <span class="exp-titulo">Analista en Sistemas</span>
-                <span class="exp-lugar">Escuela Da Vinci &mdash; En curso</span>
-                <span class="exp-desc">Formación técnica en análisis y diseño de sistemas, bases de datos, arquitectura de software y gestión de proyectos.</span>
-            </li>
-            <li>
-                <span class="exp-titulo">Curso Full Stack Developer</span>
-                <span class="exp-lugar">UTN (Universidad Tecnológica Nacional) &mdash; Terminado</span>
-                <span class="exp-desc">Desarrollo web completo: HTML, CSS, JavaScript, React, Node.js, bases de datos SQL y despliegue en producción.</span>
-            </li>
-        </ul>
-    </section>
-
-    <!-- Sección de habilidades -->
-    <section id="habilidades">
-        <h2>Habilidades</h2>
-        <ul>
-            <li>HTML <img src="Img/html5-icon.png" alt=""></li>
-            <li>CSS <img src="Img/css.png" alt=""></li>
-            <li>JavaScript <img src="Img/js.png" alt=""></li>
-            <li>Git <img src="Img/git.png" alt=""></li>
-            <li>Unity <img src="Img/unity.png" alt=""></li>
-            <li>Diseño de personajes 2D <img src="Img/2D.png" alt=""></li>
-            <li>React <img src="Img/React.png" alt=""></li>
-        </ul>
-    </section>
-
-    <!-- Sección de contacto -->
-    <section id="contacto">
-        <h2>Contacto</h2>
-        <form>
-            <label for="nombre">Nombre:</label>
-            <input type="text" id="nombre" name="nombre" required placeholder="Escribe tu nombre">
-            <label for="email">Correo electrónico:</label>
-            <input type="email" id="email" name="email" required placeholder="ejemplo@email.com">
-            <label for="mensaje">Mensaje:</label>
-            <textarea id="mensaje" name="mensaje" required placeholder="Escribe tu mensaje aquí..."></textarea>
-            <button type="submit" id="btn-enviar">Enviar</button>
-            <div id="form-msg" class="form-msg" aria-live="polite"></div>
-        </form>
-    </section>
-</main>
-
-<!-- Lightbox -->
-<div id="lightbox" class="lightbox" role="dialog" aria-modal="true">
-    <button class="lightbox-close" id="lightbox-close" aria-label="Cerrar">&times;</button>
-    <img id="lightbox-img" src="" alt="">
-</div>
-
-<footer>
-    <!-- Redes sociales --->
-    <section id="redes">
-        <h2>Redes y CV</h2>
-        <div class="redes-links">
-            <a href="https://github.com/Honorum435" target="_blank" class="redes-btn"><img src="Img/Github.png" alt="GitHub"> GitHub</a>
-            <a href="https://www.linkedin.com/in/estanislao-cullen-650859262/" target="_blank" class="redes-btn"><img src="Img/link.png" alt="LinkedIn"> LinkedIn</a>
-            <a href="Docs/CV-Estanislao-Cullen.pdf" download class="redes-btn redes-btn-cv">⬇ Descargar CV</a>
-        </div>
-    </section>
-    
-    <p>&copy; 2025 Estanislao Cullen. Todos los derechos reservados.</p>
     </footer>
-    <div class="custom-cursor" id="custom-cursor"></div>
-    <div class="custom-cursor-ring" id="custom-cursor-ring"></div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast">
+        <span class="toast-icon">✓</span>
+        <span id="toast-msg">El cuervo levantó vuelo · respondo en 24h</span>
+    </div>
+
     <script src="Js/app.js"></script>
 </body>
 </html>
